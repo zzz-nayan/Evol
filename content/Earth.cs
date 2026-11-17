@@ -97,7 +97,7 @@ public class EarthWorld
         Atmosphere.WaterVaporMoles = Math.Clamp(Atmosphere.WaterVaporMoles, 900f, 1200f);
     }
 
-    public (int Total, int Living, int Humans, int Cats, int Dogs, int Birds, int Fish, int Reptiles, int Arthropods, int Other) GetCensus()
+    public (int Total, int Living, int Humans, int Cats, int Dogs, int Birds, int Fish, int Reptiles, int Amphibians, int Arthropods, int Mammals, int Dinosaurs, int Other) GetCensus()
     {
         int total = Population.Count;
         int living = Population.Count(c => c.IsAlive);
@@ -107,10 +107,13 @@ public class EarthWorld
         int birds = Population.Count(c => c is Creature.Bird && c.IsAlive);
         int fish = Population.Count(c => c is Creature.Fish && c.IsAlive);
         int reptiles = Population.Count(c => c is Creature.Reptile && c.IsAlive);
+        int amphibians = Population.Count(c => c is Creature.Amphibian && c.IsAlive);
         int arthropods = Population.Count(c => c is Creature.Arthropod && c.IsAlive);
-        int other = living - (humans + cats + dogs + birds + fish + reptiles + arthropods);
+        int mammals = Population.Count(c => (c is Creature.Primate || c is Creature.Bear || c is Creature.Elephant || c is Creature.Cetacean || c is Creature.Ungulate || c is Creature.Carnivoran || c is Creature.Marsupial || c is Creature.Monotreme || c is Creature.RodentAndLagomorph || c is Creature.Chiroptera || c is Creature.XenarthraAndPholidota) && c.IsAlive);
+        int dinosaurs = Population.Count(c => c is Creature.Dinosauria && c.IsAlive);
+        int other = living - (humans + cats + dogs + birds + fish + reptiles + amphibians + arthropods + mammals + dinosaurs);
 
-        return (total, living, humans, cats, dogs, birds, fish, reptiles, arthropods, other);
+        return (total, living, humans, cats, dogs, birds, fish, reptiles, amphibians, arthropods, mammals, dinosaurs, other);
     }
 
     public static EarthWorld CreatePrimordialEarth()
@@ -147,6 +150,10 @@ public class EarthWorld
 
         // 6. Herbivores
         earth.Add(new Creature.Horse(null, null, "Spirit", Creature.SexType.Female));
+
+        // 7. Primordial Amphibian & Arthropod
+        earth.Add(new Creature.Amphibian.Caudata.Ambystomatidae.Axolotl(null, null, "Primordial Axolotl", Creature.SexType.Male));
+        earth.Add(new Creature.Arthropod.Insecta.Hymenoptera.Apidae.HoneyBee(null, null, "Garden Bee", Creature.SexType.Female));
 
         return earth;
     }

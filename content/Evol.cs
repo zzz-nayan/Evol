@@ -14,7 +14,7 @@ public class Evol
         Console.WriteLine($"\n[Earth Initialized] Biome Atmosphere: {earth.Atmosphere.TemperatureCelsius:F1}°C, {earth.Atmosphere.OxygenPercentage:F2}% O2, Gravity: {earth.Atmosphere.GravityMps2} m/s²");
 
         var initialCensus = earth.GetCensus();
-        Console.WriteLine($"Initial Population: {initialCensus.Total} creatures ({initialCensus.Humans} humans, {initialCensus.Cats} cats, {initialCensus.Dogs} dogs, {initialCensus.Birds} birds, {initialCensus.Fish} fish)");
+        Console.WriteLine($"Initial Population: {initialCensus.Total} creatures ({initialCensus.Humans} humans, {initialCensus.Cats} cats, {initialCensus.Dogs} dogs, {initialCensus.Birds} birds, {initialCensus.Fish} fish, {initialCensus.Amphibians} amphibians, {initialCensus.Arthropods} arthropods)");
         Console.WriteLine($"Initial Flora: {earth.Flora.Count} botanical plants & trees planted.");
 
         // 2. Discovering Flora & Trees: Shade, Privacy & Ecology
@@ -314,6 +314,116 @@ public class Evol
         Console.WriteLine($"5. Blue Whale:        {blueWhale.FilterFeedKrill(3.8f)} | Blowhole: {blueWhale.SpoutBlowhole()}");
         Console.WriteLine($"6. Orca (Killer Whale):{orca.EmitEcholocationClicks()} | {orca.PodCoordinateHunt(new Creature.Fish(null, null, "Sea Lion", Creature.SexType.Male))}");
 
+        // 12B. AMPHIBIA: ANURA, CAUDATA & GYMNOPHIONA
+        Console.WriteLine($"\n================================================================================");
+        Console.WriteLine("    AMPHIBIA CLADE: ANURA (FROGS), CAUDATA (SALAMANDERS), GYMNOPHIONA (CAECILIANS)");
+        Console.WriteLine("================================================================================");
+
+        var poisonFrog = new Creature.Amphibian.Anura.Dendrobatidae.GoldenPoisonFrog(null, null, "Phyllobates Apex");
+        var bullfrog = new Creature.Amphibian.Anura.Ranidae.AmericanBullfrog(null, null, "Lithobates Bellow");
+        var axolotl = new Creature.Amphibian.Caudata.Ambystomatidae.Axolotl(null, null, "Xochimilco Regenerator");
+        var giantSalamander = new Creature.Amphibian.Caudata.Cryptobranchidae.ChineseGiantSalamander(null, null, "Andrias Titan");
+        var caecilian = new Creature.Amphibian.Gymnophiona.Caeciliidae.ThomassCaecilian(null, null, "Subterranean Burrower");
+
+        earth.Add(poisonFrog);
+        earth.Add(bullfrog);
+        earth.Add(axolotl);
+        earth.Add(giantSalamander);
+        earth.Add(caecilian);
+
+        Console.WriteLine($"1. Golden Poison Frog:    {poisonFrog.DisplayAposematicColoration()} | Batrachotoxin={poisonFrog.BatrachotoxinMicrograms}μg");
+        Console.WriteLine($"2. American Bullfrog:     {bullfrog.DeepBassCroak()}");
+        Console.WriteLine($"3. Axolotl:               {axolotl.RegenerateLimb("forelimb")} | Neotenic={axolotl.IsNeotenic}");
+        Console.WriteLine($"4. Giant Salamander:      {giantSalamander.WaveLateralSkinFolds()} | Length={giantSalamander.LengthMeters}m");
+        Console.WriteLine($"5. Caecilian:             {caecilian.ProtrudeSensoryTentacles()} | Limbless={caecilian.IsLimblessVermiform}");
+
+        // 12C. UNGULATA & CARNIVORA
+        Console.WriteLine($"\n================================================================================");
+        Console.WriteLine("    UNGULATA (HOOFED MAMMALS) & CARNIVORA (MUSTELIDS, HYENAS, PINNIPEDS)        ");
+        Console.WriteLine("================================================================================");
+
+        var bison = new Creature.Ungulate.Artiodactyla.Bovidae.AmericanBison(null, null, Creature.SexType.Male, "Thunder Hump");
+        var giraffe = new Creature.Ungulate.Artiodactyla.Giraffidae.Giraffe(null, null, Creature.SexType.Female, "Canopy Stalker");
+        var hippo = new Creature.Ungulate.Artiodactyla.Hippopotamidae.Hippopotamus(null, null, Creature.SexType.Male, "River Behemoth");
+        var rhino = new Creature.Ungulate.Perissodactyla.Rhinocerotidae.WhiteRhino(null, null, Creature.SexType.Male, "Square-Lip Titan");
+        var honeyBadger = new Creature.Carnivoran.Mustelidae.HoneyBadger(null, null, Creature.SexType.Male, "Fearless Ratel");
+        var seaOtter = new Creature.Carnivoran.Mustelidae.SeaOtter(null, null, Creature.SexType.Female, "Kelp Wrapper");
+        var hyena = new Creature.Carnivoran.Hyaenidae.SpottedHyena(null, null, Creature.SexType.Female, "Clan Matriarch");
+        var walrus = new Creature.Carnivoran.Pinnipedia.Odobenidae.Walrus(null, null, Creature.SexType.Male, "Ice Tusk");
+
+        earth.Add(bison);
+        earth.Add(giraffe);
+        earth.Add(hippo);
+        earth.Add(rhino);
+        earth.Add(honeyBadger);
+        earth.Add(seaOtter);
+        earth.Add(hyena);
+        earth.Add(walrus);
+
+        Console.WriteLine($"1. American Bison:        {bison.PlowSnowWithHead()}");
+        Console.WriteLine($"2. Giraffe:               {giraffe.BrowseAcaciaThorns()} | Blood Pressure={giraffe.Body.Heart.SystolicPressure} mmHg");
+        Console.WriteLine($"3. Hippopotamus:          {hippo.ExudeBloodSweatSunscreen()} | Bite Force={hippo.BiteForceNewtons:N0}N");
+        Console.WriteLine($"4. White Rhino:           {rhino.WideMouthGraze()} | Horn Length={rhino.AnteriorHornLengthCm}cm");
+        Console.WriteLine($"5. Honey Badger:          {honeyBadger.ShrugOffSnakeVenom()}");
+        Console.WriteLine($"6. Sea Otter:             {seaOtter.CrackClamWithAnvilStone()} | Fur Density={seaOtter.HairDensityPerSqCm:N0}/cm²");
+        Console.WriteLine($"7. Spotted Hyena:         {hyena.PulverizeBoneShafts()} | Jaw Pressure={hyena.BitePressurePounds:N0} lbs");
+        Console.WriteLine($"8. Pacific Walrus:        {walrus.VacuumBenthicClams()} | Tusk Length={walrus.TuskLengthCm}cm");
+
+        // 12D. MARSUPIALIA, MONOTREMATA, GLIRES, CHIROPTERA & XENARTHRA
+        Console.WriteLine($"\n================================================================================");
+        Console.WriteLine("    SPECIALIZED MAMMALS: POUCHED, EGG-LAYING, RODENTS, BATS & XENARTHRANS       ");
+        Console.WriteLine("================================================================================");
+
+        var kangaroo = new Creature.Marsupial.Macropodidae.RedKangaroo(null, null, Creature.SexType.Female, "Big Red");
+        var platypus = new Creature.Monotreme.Ornithorhynchidae.DuckBilledPlatypus(null, null, Creature.SexType.Male, "Ornitho Bill");
+        var beaver = new Creature.RodentAndLagomorph.Rodentia.Castoridae.NorthAmericanBeaver(null, null, Creature.SexType.Male, "Hydraulic Castor");
+        var flyingFox = new Creature.Chiroptera.Yinpterochiroptera.Pteropodidae.LargeFlyingFox(null, null, Creature.SexType.Male, "Canopy Fox");
+        var anteater = new Creature.XenarthraAndPholidota.Myrmecophagidae.GiantAnteater(null, null, Creature.SexType.Female, "Myrmeco Tongue");
+
+        earth.Add(kangaroo);
+        earth.Add(platypus);
+        earth.Add(beaver);
+        earth.Add(flyingFox);
+        earth.Add(anteater);
+
+        Console.WriteLine($"1. Red Kangaroo:          {kangaroo.HighSpeedHop(12f)} | Pouch Nursing: {kangaroo.JoeyNursedInPouch()}");
+        Console.WriteLine($"2. Duck-Billed Platypus:  {platypus.ElectroreceptiveForage()} | Venom Spurs: {platypus.HasCruralVenomSpurs}");
+        Console.WriteLine($"3. North American Beaver: {beaver.EngineerHydraulicDam()}");
+        Console.WriteLine($"4. Large Flying Fox:      {flyingFox.FlyOverCanopyPollinating(45f)} | Wingspan={flyingFox.WingspanCm}cm");
+        Console.WriteLine($"5. Giant Anteater:        {anteater.FlickTongueRapidly(30000)} | Tongue Length={anteater.TongueLengthCm}cm");
+
+        // 12E. PREHISTORIC CLADES: DINOSAURIA, PTEROSAURIA, MARINE REPTILES & SYNAPSIDA
+        Console.WriteLine($"\n================================================================================");
+        Console.WriteLine("    PREHISTORIC TITANS: THEROPODS, SAUROPODS, ORNITHISCHIANS, PTEROSAURS & SYNAPSIDS");
+        Console.WriteLine("================================================================================");
+
+        var trex = new Creature.Dinosauria.Saurischia.Theropoda.Tyrannosauridae.TyrannosaurusRex(null, null, Creature.SexType.Female, "Sue T-Rex");
+        var spinosaurus = new Creature.Dinosauria.Saurischia.Theropoda.Spinosauridae.SpinosaurusAegyptiacus(null, null, Creature.SexType.Male, "River Spino");
+        var raptor = new Creature.Dinosauria.Saurischia.Theropoda.Dromaeosauridae.VelociraptorMongoliensis(null, null, Creature.SexType.Female, "Blue Raptor");
+        var titanosaur = new Creature.Dinosauria.Saurischia.Sauropodomorpha.Titanosauria.ArgentinosaurusHuanculensis(null, null, Creature.SexType.Female, "Patagonian Titan");
+        var triceratops = new Creature.Dinosauria.Ornithischia.Marginocephalia.Ceratopsidae.TriceratopsHorridus(null, null, Creature.SexType.Male, "Three-Horns");
+        var quetzalcoatlus = new Creature.Dinosauria.Pterosauria.Azhdarchidae.QuetzalcoatlusNorthropi(null, null, Creature.SexType.Female, "Sky Sovereign");
+        var mosasaurus = new Creature.Dinosauria.Mosasauroidea.Mosasauridae.MosasaurusHoffmannii(null, null, Creature.SexType.Female, "Deep Ocean Queen");
+        var dimetrodon = new Creature.Dinosauria.Synapsida.Sphenacodontidae.DimetrodonGrandis(null, null, Creature.SexType.Male, "Permian Sailback");
+
+        earth.Add(trex);
+        earth.Add(spinosaurus);
+        earth.Add(raptor);
+        earth.Add(titanosaur);
+        earth.Add(triceratops);
+        earth.Add(quetzalcoatlus);
+        earth.Add(mosasaurus);
+        earth.Add(dimetrodon);
+
+        Console.WriteLine($"1. Tyrannosaurus rex:     {trex.BinocularVisionTracking()} | Bite Force={trex.BiteForceNewtons:N0}N | Mass={trex.EstimatedBodyMassTonnes}t");
+        Console.WriteLine($"2. Spinosaurus:           {spinosaurus.PaddleTailAquaticPropulsion()} | Sail Height={spinosaurus.SailHeightMeters}m");
+        Console.WriteLine($"3. Velociraptor:          {raptor.CoordinatePackAmbush()} | Sickle Claw={raptor.SickleClawLengthCm}cm");
+        Console.WriteLine($"4. Argentinosaurus:       {titanosaur.GroundTremorStep()} | Mass={titanosaur.EstimatedBodyMassTonnes}t | Length={titanosaur.TotalLengthMeters}m");
+        Console.WriteLine($"5. Triceratops:           {triceratops.ShearFibrousPalms()} | Brow Horns={triceratops.BrowHornLengthCm}cm");
+        Console.WriteLine($"6. Quetzalcoatlus:        {quetzalcoatlus.QuadrupedalVaultLaunch()} | Wingspan={quetzalcoatlus.WingspanMeters}m");
+        Console.WriteLine($"7. Mosasaurus:            {mosasaurus.HypocercalTailPropulsion()} | Length={mosasaurus.TotalLengthMeters}m");
+        Console.WriteLine($"8. Dimetrodon:            {dimetrodon.RapidThermoregulationSail()} | Sail Height={dimetrodon.SailHeightMeters}m");
+
         // 13. Planetary Chemistry & Reaction Engine Verification
         Console.WriteLine($"\n================================================================================");
         Console.WriteLine("    PERIODIC TABLE (BIG 12) & MOLECULAR REACTION ENGINE DEMONSTRATION           ");
@@ -420,7 +530,7 @@ public class Evol
         var finalCensus = earth.GetCensus();
         Console.WriteLine($"\n================================================================================");
         Console.WriteLine($"Earth Census at Day {earth.DayCount}: {finalCensus.Living}/{finalCensus.Total} living creatures thriving across all biomes.");
-        Console.WriteLine($"Humans: {finalCensus.Humans} | Cats: {finalCensus.Cats} | Dogs: {finalCensus.Dogs} | Birds: {finalCensus.Birds} | Fish: {finalCensus.Fish} | Reptiles: {finalCensus.Reptiles} | Arthropods: {finalCensus.Arthropods} | Other Mammals: {finalCensus.Other}");
+        Console.WriteLine($"Humans: {finalCensus.Humans} | Cats: {finalCensus.Cats} | Dogs: {finalCensus.Dogs} | Birds: {finalCensus.Birds} | Fish: {finalCensus.Fish} | Reptiles: {finalCensus.Reptiles} | Amphibians: {finalCensus.Amphibians} | Arthropods: {finalCensus.Arthropods} | Mammals: {finalCensus.Mammals} | Dinosaurs: {finalCensus.Dinosaurs} | Other: {finalCensus.Other}");
         Console.WriteLine($"Botanical Flora: {earth.Flora.Count(p => p.IsAlive)}/{earth.Flora.Count} thriving plants and trees.");
         Console.WriteLine("================================================================================");
     }
